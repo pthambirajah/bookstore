@@ -9,7 +9,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.List;
 import java.util.Optional;
 
 @Controller
@@ -25,6 +27,19 @@ public class BookController {
     public String bookList(Model model){
         model.addAttribute("books", repository.findAll());
         return "booklist";
+    }
+
+    // RESTful service to get all students
+    @RequestMapping(value="/books", method = RequestMethod.GET)
+    public @ResponseBody
+    List<Book> bookListRest() {
+        return (List<Book>) repository.findAll();
+    }
+
+    // RESTful service to get student by id
+    @RequestMapping(value="/book/{id}", method = RequestMethod.GET)
+    public @ResponseBody Optional<Book> findBookRest(@PathVariable("id") Long id) {
+        return repository.findById(id);
     }
 
     @RequestMapping(value = "/add")

@@ -1,5 +1,7 @@
 package fi.haagahelia.bookstore.domain;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 
 @Entity
@@ -11,6 +13,7 @@ public class Book {
     private int year;
 
     @ManyToOne
+    @JsonManagedReference
     @JoinColumn(name = "categoryid")
     private Category category;
 
