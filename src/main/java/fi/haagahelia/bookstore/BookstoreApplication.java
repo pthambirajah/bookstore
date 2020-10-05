@@ -1,9 +1,6 @@
 package fi.haagahelia.bookstore;
 
-import fi.haagahelia.bookstore.domain.Book;
-import fi.haagahelia.bookstore.domain.BookRepository;
-import fi.haagahelia.bookstore.domain.Category;
-import fi.haagahelia.bookstore.domain.CategoryRepository;
+import fi.haagahelia.bookstore.domain.*;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -17,7 +14,7 @@ public class BookstoreApplication {
     }
 
     @Bean
-    public CommandLineRunner demo(BookRepository repository, CategoryRepository categoryRepository){
+    public CommandLineRunner demo(BookRepository repository, CategoryRepository categoryRepository, UserRepository urepository){
         return (args) -> {
 
         Category cA = new Category("IT");
@@ -35,6 +32,11 @@ public class BookstoreApplication {
         repository.save(a);
         repository.save(b);
         repository.save(c);
+
+            User user1 = new User("user", "$2a$06$3jYRJrg0ghaaypjZ/.g4SethoeA51ph3UD4kZi9oPkeMTpjKU5uo6", "USER", "user@haaga.fi");
+            User user2 = new User("admin", "$2a$10$0MMwY.IQqpsVc1jC8u7IJ.2rT8b0Cd3b3sfIBGV2zfgnPGtT4r0.C", "ADMIN", "user@haaga.fi");
+            urepository.save(user1);
+            urepository.save(user2);
 
         };
     };
