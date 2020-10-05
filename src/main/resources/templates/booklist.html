@@ -21,5 +21,9 @@
         </tbody>
     </table>
     <a href="/add">Add Book</a>
+    <h1 th:inline="text">Connected as : [[${#httpServletRequest.remoteUser}]]!</h1>
+    <form th:action="@{/logout}" method="post">
+        <input type="submit" value="Sign Out"/>
+    </form>
 </body>
 </html>

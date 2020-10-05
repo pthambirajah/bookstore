@@ -69,4 +69,9 @@ public class BookController {
         return "modifybook";
     }
 
+    @RequestMapping(value="/login")
+    public String login() {
+        return "login";
+    }
+
 }
